@@ -14,10 +14,9 @@
         }
 
         body {
-            background-color: #050507; /* Fundo Preto */
+            background-color: #050507; 
             color: #ffffff;
             min-height: 100vh;
-            /* Efeito de grade sutil no fundo */
             background-image: 
                 linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
@@ -44,6 +43,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            cursor: pointer;
         }
 
         .logo-icon {
@@ -64,10 +64,11 @@
             text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.3s;
+            cursor: pointer;
         }
 
         .nav-links li a:hover, .nav-links li a.active {
-            color: #a855f7; /* Roxo claro no hover */
+            color: #a855f7;
         }
 
         .nav-actions {
@@ -84,10 +85,14 @@
             cursor: pointer;
             font-size: 0.9rem;
             transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-nav.discord {
-            background-color: #5865F2; /* Cor padrão do Discord */
+            background-color: #5865F2; 
             border-color: #5865F2;
         }
 
@@ -96,9 +101,13 @@
             background-color: rgba(168, 85, 247, 0.1);
         }
 
-        /* Banner de Aviso (Roxo) */
+        .btn-nav.discord:hover {
+            background-color: #4752C4;
+        }
+
+        /* Banner de Aviso */
         .promo-banner {
-            background: linear-gradient(90deg, #6b21a8, #9333ea, #a855f7); /* Gradiente Roxo */
+            background: linear-gradient(90deg, #6b21a8, #9333ea, #a855f7);
             width: 100%;
             max-width: 800px;
             border-radius: 12px;
@@ -129,22 +138,31 @@
             font-weight: bold;
             cursor: pointer;
             font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
-        /* Seção Principal (Hero) */
-        main {
-            display: flex;
+        /* Estrutura de Abas */
+        .tab-content {
+            display: none; /* Esconde todas as abas por padrão */
             flex-direction: column;
             align-items: center;
             text-align: center;
             margin-top: 60px;
             max-width: 800px;
             padding: 0 20px;
+            animation: fadeIn 0.4s ease-in-out;
+            width: 100%;
         }
 
+        .tab-content.active {
+            display: flex; /* Mostra apenas a aba ativa */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Estilos da Home */
         .sales-badge {
             border: 1px solid #27272a;
             padding: 6px 15px;
@@ -160,7 +178,6 @@
             font-weight: 900;
             letter-spacing: -2px;
             margin-bottom: 15px;
-            /* Texto com gradiente roxo */
             background: linear-gradient(90deg, #c084fc, #9333ea, #7e22ce);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -200,7 +217,7 @@
         }
 
         .btn-primary {
-            background: linear-gradient(90deg, #9333ea, #7e22ce); /* Fundo roxo */
+            background: linear-gradient(90deg, #9333ea, #7e22ce);
             color: white;
             border: none;
             box-shadow: 0 0 20px rgba(147, 51, 234, 0.4);
@@ -222,23 +239,59 @@
             background-color: rgba(168, 85, 247, 0.05);
         }
 
+        /* Estilos Extras para Novas Abas */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid #27272a;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: left;
+            transition: border-color 0.3s;
+        }
+
+        .card:hover {
+            border-color: #a855f7;
+        }
+
+        .card h3 {
+            color: #c084fc;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #a1a1aa;
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo-nav">
+        <div class="logo-nav" onclick="switchTab('home')">
             <div class="logo-icon"></div>
-            Oppus
+            Oppus Shop
         </div>
         <ul class="nav-links">
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">Faq</a></li>
-            <li><a href="#">Features</a></li>
+            <li><a class="nav-item active" onclick="switchTab('home')">Home</a></li>
+            <li><a class="nav-item" onclick="switchTab('products')">Products</a></li>
+            <li><a class="nav-item" onclick="switchTab('faq')">Faq</a></li>
+            <li><a class="nav-item" onclick="switchTab('features')">Features</a></li>
         </ul>
         <div class="nav-actions">
-            <button class="btn-nav discord">Discord</button>
+            <a href="https://discord.gg/PAWq8m5hvI" target="_blank" class="btn-nav discord">Discord</a>
             <button class="btn-nav">Login</button>
         </div>
     </nav>
@@ -251,7 +304,7 @@
         <button class="btn-connect">Connect</button>
     </div>
 
-    <main>
+    <main id="home" class="tab-content active">
         <div class="sales-badge">
             📈 + 1.534 products sold worldwide
         </div>
@@ -264,17 +317,96 @@
         </p>
 
         <div class="hero-buttons">
-            <button class="btn-main btn-primary">
+            <button class="btn-main btn-primary" onclick="switchTab('products')">
                 📦 Explore Software
             </button>
             <button class="btn-main btn-secondary">
                 🔍 Find My Product
             </button>
-            <button class="btn-main btn-secondary">
+            <button class="btn-main btn-secondary" onclick="switchTab('features')">
                 ⭐ Features
             </button>
         </div>
     </main>
 
+    <section id="products" class="tab-content">
+        <h2 class="section-title">Our Products</h2>
+        <div class="grid-container">
+            <div class="card">
+                <h3>Spoofer Premium</h3>
+                <p>Bypass hardware bans with a single click. Safe and undetected.</p>
+            </div>
+            <div class="card">
+                <h3>Valorant Tool</h3>
+                <p>Enhance your gameplay with our private and secure overlay tools.</p>
+            </div>
+            <div class="card">
+                <h3>Account Cleaner</h3>
+                <p>Remove trace files permanently before creating new accounts.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="tab-content">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="grid-container" style="grid-template-columns: 1fr;">
+            <div class="card">
+                <h3>Is it safe to use?</h3>
+                <p>Yes, all our tools are tested daily to ensure maximum security and avoid detection.</p>
+            </div>
+            <div class="card">
+                <h3>How do I receive my product?</h3>
+                <p>After purchase, you will immediately receive a license key and download instructions in your email.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="tab-content">
+        <h2 class="section-title">Why choose Oppus Shop?</h2>
+        <div class="grid-container">
+            <div class="card">
+                <h3>⚡ Instant Delivery</h3>
+                <p>No waiting times. Automated system 24/7.</p>
+            </div>
+            <div class="card">
+                <h3>🔒 100% Secure</h3>
+                <p>Encrypted data and secure payment gateways.</p>
+            </div>
+            <div class="card">
+                <h3>📞 24/7 Support</h3>
+                <p>Our team is available on Discord around the clock.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function switchTab(tabId) {
+            // Esconde todas as seções
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove a classe 'active' de todos os links do menu
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Mostra a seção clicada
+            document.getElementById(tabId).classList.add('active');
+
+            // Adiciona a classe 'active' ao link clicado no menu (procurando pelo texto)
+            navItems.forEach(item => {
+                if(item.textContent.toLowerCase() === tabId) {
+                    item.classList.add('active');
+                } else if (tabId === 'home' && item.textContent === 'Home') {
+                    item.classList.add('active');
+                }
+            });
+        }
+    </script>
+
 </body>
 </html>
+
