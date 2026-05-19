@@ -1,217 +1,118 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OPUS STORE</title>
+<section class="roulette-section">
 
-  <style>
+  <h1>ROLETA DE DESCONTOS</h1>
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial;
-    }
+  <p>
+    Entre no nosso Discord para liberar a roleta 🎰
+  </p>
 
-    body{
-      background:#07000f;
-      color:white;
-    }
+  <a class="discord-btn" href="https://discord.gg/PAWq8m5hv" target="_blank">
+    Entrar no Discord
+  </a>
 
-    header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:25px 60px;
-      border-bottom:1px solid #2a1044;
-      position:sticky;
-      top:0;
-      background:#07000f;
-    }
+  <br><br>
 
-    .logo{
-      font-size:35px;
-      font-weight:bold;
-      color:#a855f7;
-    }
+  <button class="spin-btn" onclick="spinRoulette()">
+    Girar Roleta
+  </button>
 
-    nav a{
-      color:white;
-      text-decoration:none;
-      margin-left:25px;
-      transition:0.3s;
-    }
+  <div class="roulette" id="roulette">
+    ?
+  </div>
 
-    nav a:hover{
-      color:#a855f7;
-    }
+</section>
 
-    .hero{
-      height:90vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      flex-direction:column;
-      text-align:center;
-      padding:20px;
-      background:linear-gradient(to bottom,#07000f,#12001f);
-    }
+<style>
 
-    .hero h1{
-      font-size:90px;
-      margin-bottom:20px;
-      color:#c084fc;
-      text-shadow:0 0 25px #9333ea;
-    }
+.roulette-section{
+  text-align:center;
+  padding:100px 20px;
+}
 
-    .hero p{
-      color:#cfcfcf;
-      max-width:700px;
-      margin-bottom:30px;
-      font-size:20px;
-    }
+.roulette-section h1{
+  font-size:50px;
+  margin-bottom:20px;
+  color:#c084fc;
+}
 
-    .btn{
-      padding:15px 40px;
-      border:none;
-      background:#9333ea;
-      color:white;
-      font-size:18px;
-      font-weight:bold;
-      border-radius:15px;
-      cursor:pointer;
-      transition:0.3s;
-      box-shadow:0 0 20px #9333ea66;
-    }
+.roulette-section p{
+  color:#aaa;
+  margin-bottom:25px;
+}
 
-    .btn:hover{
-      transform:scale(1.05);
-      background:#a855f7;
-    }
+.discord-btn{
+  display:inline-block;
+  padding:15px 35px;
+  background:#5865F2;
+  color:white;
+  text-decoration:none;
+  border-radius:15px;
+  font-weight:bold;
+}
 
-    .products{
-      padding:100px 50px;
-    }
+.spin-btn{
+  margin-top:25px;
+  padding:15px 40px;
+  background:#9333ea;
+  color:white;
+  border:none;
+  border-radius:15px;
+  font-size:18px;
+  cursor:pointer;
+}
 
-    .title{
-      text-align:center;
-      font-size:50px;
-      margin-bottom:60px;
-      color:#c084fc;
-    }
+.roulette{
+  width:250px;
+  height:250px;
+  border-radius:50%;
+  border:8px solid #9333ea;
+  margin:40px auto;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:40px;
+  font-weight:bold;
+  background:#12001f;
+  box-shadow:0 0 30px #9333ea66;
+}
 
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-      gap:30px;
-    }
+</style>
 
-    .card{
-      background:#12001f;
-      border:1px solid #2a1044;
-      padding:30px;
-      border-radius:25px;
-      transition:0.3s;
-      box-shadow:0 0 20px #00000055;
-    }
+<script>
 
-    .card:hover{
-      border-color:#9333ea;
-      transform:translateY(-5px);
-      box-shadow:0 0 25px #9333ea44;
-    }
+let joinedDiscord = false;
 
-    .card h2{
-      margin-bottom:15px;
-      color:#c084fc;
-    }
+document.querySelector(".discord-btn").addEventListener("click", () => {
+  joinedDiscord = true;
+});
 
-    .price{
-      font-size:40px;
-      font-weight:bold;
-      margin:20px 0;
-      color:#a855f7;
-    }
+function spinRoulette(){
 
-    footer{
-      text-align:center;
-      padding:40px;
-      border-top:1px solid #2a1044;
-      color:#888;
-      margin-top:60px;
-    }
+  if(!joinedDiscord){
+    alert("Entre no Discord primeiro!");
+    return;
+  }
 
-  </style>
-</head>
+  const prizes = [
+    "5% OFF",
+    "10% OFF",
+    "20% OFF",
+    "30% OFF"
+  ];
 
-<body>
+  const randomPrize =
+    prizes[Math.floor(Math.random() * prizes.length)];
 
-  <header>
-    <div class="logo">OPUS</div>
+  const roulette =
+    document.getElementById("roulette");
 
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Produtos</a>
-      <a href="#">Contato</a>
-    </nav>
-  </header>
+  roulette.innerHTML = "🎰";
 
-  <section class="hero">
+  setTimeout(() => {
+    roulette.innerHTML = randomPrize;
+  }, 2000);
 
-    <h1>OPUS STORE</h1>
+}
 
-    <p>
-      Loja gamer premium com visual moderno e estilo roxo neon.
-    </p>
+</script>
 
-    <button class="btn">Comprar Agora</button>
-
-  </section>
-
-  <section class="products">
-
-    <h1 class="title">Produtos</h1>
-
-    <div class="cards">
-
-      <div class="card">
-        <h2>Pacote Bronze</h2>
-
-        <p>Pacote básico com acesso inicial.</p>
-
-        <div class="price">R$49,90</div>
-
-        <button class="btn">Comprar</button>
-      </div>
-
-      <div class="card">
-        <h2>Pacote Prata</h2>
-
-        <p>Mais recursos e suporte prioritário.</p>
-
-        <div class="price">R$89,90</div>
-
-        <button class="btn">Comprar</button>
-      </div>
-
-      <div class="card">
-        <h2>Pacote Ouro</h2>
-
-        <p>Experiência completa premium.</p>
-
-        <div class="price">R$149,90</div>
-
-        <button class="btn">Comprar</button>
-      </div>
-
-    </div>
-
-  </section>
-
-  <footer>
-    © 2026 OPUS STORE - Todos os direitos reservados.
-  </footer>
-
-</body>
-</html>
