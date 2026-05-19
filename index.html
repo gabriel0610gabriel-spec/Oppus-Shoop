@@ -1,275 +1,117 @@
-export default function OpusStore() {
-  const products = [
-    {
-      name: 'Pacote Bronze',
-      price: 'R$ 49,90',
-      desc: 'Pacote premium com acesso exclusivo e atualizações constantes.'
-    },
-    {
-      name: 'Pacote Prata',
-      price: 'R$ 89,90',
-      desc: 'Versão avançada com recursos extras e suporte prioritário.'
-    },
-    {
-      name: 'Pacote Ouro',
-      price: 'R$ 149,90',
-      desc: 'Plano completo para usuários que querem tudo desbloqueado.'
-    }
-  ]
+<section class="roulette-section">
 
-  return (
-    <div className="min-h-screen bg-black text-white">
-      <header className="border-b border-zinc-800 backdrop-blur sticky top-0 z-50 bg-black/80">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <h1 className="text-3xl font-black tracking-widest text-orange-500">
-            OPUS
-          </h1>
+  <h1>ROLETA DE DESCONTOS</h1>
 
-          <nav className="flex gap-6 text-sm text-zinc-300">
-            <a href="#home" className="hover:text-orange-500 transition">Home</a>
-            <a href="#products" className="hover:text-orange-500 transition">Produtos</a>
-            <a href="#features" className="hover:text-orange-500 transition">Features</a>
-            <a href="#contact" className="hover:text-orange-500 transition">Contato</a>
-          </nav>
-        </div>
-      </header>
+  <p>
+    Entre no nosso Discord para liberar a roleta 🎰
+  </p>
 
-      <section
-        id="home"
-        className="relative overflow-hidden py-28 px-6"
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-transparent blur-3xl" />
+  <a class="discord-btn" href="SEU_LINK_DO_DC" target="_blank">
+    Entrar no Discord
+  </a>
 
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-center relative z-10">
-          <div>
-            <p className="uppercase tracking-[6px] text-orange-500 mb-4 text-sm">
-              Opus Store
-            </p>
+  <br><br>
 
-            <h2 className="text-6xl font-black leading-tight mb-6">
-              A nova geração da sua loja gamer.
-            </h2>
+  <button class="spin-btn" onclick="spinRoulette()">
+    Girar Roleta
+  </button>
 
-            <p className="text-zinc-400 text-lg mb-8 max-w-xl">
-              Plataforma moderna, visual premium e produtos digitais entregues rapidamente.
-            </p>
+  <div class="roulette" id="roulette">
+    ?
+  </div>
 
-            <div className="flex gap-4">
-              <button className="bg-orange-500 hover:bg-orange-400 transition px-8 py-4 rounded-2xl font-bold text-black shadow-2xl">
-                Comprar Agora
-              </button>
+</section>
 
-              <button className="border border-zinc-700 hover:border-orange-500 px-8 py-4 rounded-2xl transition">
-                Ver Produtos
-              </button>
-            </div>
-          </div>
+<style>
 
-          <div className="relative">
-            <div className="absolute inset-0 bg-orange-500 blur-[120px] opacity-20" />
-
-            <div className="relative bg-zinc-900 border border-zinc-800 rounded-[32px] p-8 shadow-2xl">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-black rounded-2xl p-6 border border-zinc-800">
-                  <h3 className="text-4xl font-black text-orange-500">24/7</h3>
-                  <p className="text-zinc-400 mt-2">Suporte</p>
-                </div>
-
-                <div className="bg-black rounded-2xl p-6 border border-zinc-800">
-                  <h3 className="text-4xl font-black text-orange-500">100+</h3>
-                  <p className="text-zinc-400 mt-2">Clientes</p>
-                </div>
-
-                <div className="bg-black rounded-2xl p-6 border border-zinc-800 col-span-2">
-                  <h3 className="text-3xl font-black mb-2">Entrega Instantânea</h3>
-                  <p className="text-zinc-400">
-                    Receba seus produtos rapidamente após a compra.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="products" className="max-w-7xl mx-auto px-6 py-24">
-        <div className="flex items-center justify-between mb-12">
-          <div>
-            <p className="text-orange-500 uppercase tracking-[4px] text-sm mb-2">
-              Produtos
-            </p>
-
-            <h2 className="text-5xl font-black">Escolha seu pacote</h2>
-          </div>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {products.map((product, index) => (
-            <div
-              key={index}
-              className="bg-zinc-900 border border-zinc-800 rounded-[32px] p-8 hover:border-orange-500 transition"
-            >
-              <div className="mb-6">
-                <h3 className="text-3xl font-black mb-2">
-                  {product.name}
-                </h3>
-
-                <p className="text-zinc-400">
-                  {product.desc}
-                </p>
-              </div>
-
-              <div className="text-5xl font-black text-orange-500 mb-8">
-                {product.price}
-              </div>
-
-              <button className="w-full bg-orange-500 hover:bg-orange-400 text-black font-bold py-4 rounded-2xl transition">
-                Comprar
-              </button>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section id="features" className="bg-zinc-950 border-y border-zinc-800">
-        <div className="max-w-7xl mx-auto px-6 py-24">
-          <div className="text-center mb-16">
-            <p className="text-orange-500 uppercase tracking-[4px] text-sm mb-2">
-              Features
-            </p>
-
-            <h2 className="text-5xl font-black">
-              Por que escolher a OPUS?
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-black border border-zinc-800 rounded-[28px] p-8">
-              <h3 className="text-2xl font-bold mb-4">Visual Premium</h3>
-              <p className="text-zinc-400">
-                Interface moderna com foco em performance e estilo gamer.
-              </p>
-            </div>
-
-            <div className="bg-black border border-zinc-800 rounded-[28px] p-8">
-              <h3 className="text-2xl font-bold mb-4">Segurança</h3>
-              <p className="text-zinc-400">
-                Sistema otimizado e proteção reforçada para clientes.
-              </p>
-            </div>
-
-            <div className="bg-black border border-zinc-800 rounded-[28px] p-8">
-              <h3 className="text-2xl font-bold mb-4">Atualizações</h3>
-              <p className="text-zinc-400">
-                Melhorias constantes para manter a melhor experiência.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" className="max-w-5xl mx-auto px-6 py-24 text-center">
-        <p className="text-orange-500 uppercase tracking-[4px] text-sm mb-3">
-          Contato
-        </p>
-
-        <h2 className="text-5xl font-black mb-6">
-          Entre para a comunidade OPUS
-        </h2>
-
-        <p className="text-zinc-400 mb-10 text-lg">
-          Atendimento rápido e suporte dedicado.
-        </p>
-
-        <div className="flex flex-col md:flex-row gap-4 justify-center">
-          <input
-            placeholder="Seu e-mail"
-            className="bg-zinc-900 border border-zinc-800 rounded-2xl px-6 py-4 w-full md:w-[400px] outline-none focus:border-orange-500"
-          />
-
-          <button className="bg-orange-500 hover:bg-orange-400 text-black font-bold px-8 py-4 rounded-2xl transition">
-            Entrar
-          </button>
-        </div>
-      </section>
-
-      {/* ROULETTE POPUP */}
-      <div className="fixed top-5 left-1/2 -translate-x-1/2 z-50 animate-pulse">
-        <button
-          onClick={() => {
-            const popup = document.getElementById('roulette-popup')
-            if (popup) popup.style.display = 'flex'
-          }}
-          className="bg-purple-600 hover:bg-purple-500 transition px-6 py-3 rounded-2xl font-bold shadow-2xl"
-        >
-          🎰 SPIN & WIN UP TO 30% OFF
-        </button>
-      </div>
-
-      <div
-        id="roulette-popup"
-        style={{ display: 'none' }}
-        className="fixed inset-0 bg-black/80 z-[100] items-center justify-center"
-      >
-        <div className="bg-zinc-950 border border-purple-600 rounded-[30px] p-10 w-[420px] text-center shadow-2xl">
-          <h1 className="text-4xl font-black text-purple-400 mb-4">
-            🎰 OPUS WHEEL
-          </h1>
-
-          <p className="text-zinc-400 mb-6">
-            Join our Discord server to unlock the wheel.
-          </p>
-
-          <a
-            href="YOUR_DISCORD_LINK"
-            target="_blank"
-            className="bg-indigo-500 hover:bg-indigo-400 transition px-6 py-4 rounded-2xl inline-block font-bold mb-6"
-          >
-            Join Discord
-          </a>
-
-          <div
-            id="roulette-result"
-            className="w-[200px] h-[200px] rounded-full border-4 border-purple-500 flex items-center justify-center text-3xl font-black mx-auto bg-black shadow-2xl mb-6"
-          >
-            🎁
-          </div>
-
-          <button
-            onClick={() => {
-              const prizes = ['5% OFF', '10% OFF', '20% OFF', '30% OFF']
-              const result = document.getElementById('roulette-result')
-
-              if (result) {
-                result.innerHTML = '🎰'
-
-                setTimeout(() => {
-                  result.innerHTML = prizes[Math.floor(Math.random() * prizes.length)]
-                }, 2000)
-              }
-            }}
-            className="bg-purple-600 hover:bg-purple-500 transition px-8 py-4 rounded-2xl font-bold"
-          >
-            SPIN NOW
-          </button>
-
-          <br />
-
-          <button
-            onClick={() => {
-              const popup = document.getElementById('roulette-popup')
-              if (popup) popup.style.display = 'none'
-            }}
-            className="mt-6 text-zinc-500"
-          >
-            Close
-          </button>
-        </div>
-      </div>
-
-      <footer className="border-t border-zinc-800 py-8 text-center text-zinc-500">
-        © 2026 OPUS STORE — Todos os direitos reservados.
-      </footer>
-    </div>
-  )
+.roulette-section{
+  text-align:center;
+  padding:100px 20px;
 }
+
+.roulette-section h1{
+  font-size:50px;
+  margin-bottom:20px;
+  color:#c084fc;
+}
+
+.roulette-section p{
+  color:#aaa;
+  margin-bottom:25px;
+}
+
+.discord-btn{
+  display:inline-block;
+  padding:15px 35px;
+  background:#5865F2;
+  color:white;
+  text-decoration:none;
+  border-radius:15px;
+  font-weight:bold;
+}
+
+.spin-btn{
+  margin-top:25px;
+  padding:15px 40px;
+  background:#9333ea;
+  color:white;
+  border:none;
+  border-radius:15px;
+  font-size:18px;
+  cursor:pointer;
+}
+
+.roulette{
+  width:250px;
+  height:250px;
+  border-radius:50%;
+  border:8px solid #9333ea;
+  margin:40px auto;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:40px;
+  font-weight:bold;
+  background:#12001f;
+  box-shadow:0 0 30px #9333ea66;
+}
+
+</style>
+
+<script>
+
+let joinedDiscord = false;
+
+document.querySelector(".discord-btn").addEventListener("click", () => {
+  joinedDiscord = true;
+});
+
+function spinRoulette(){
+
+  if(!joinedDiscord){
+    alert("Entre no Discord primeiro!");
+    return;
+  }
+
+  const prizes = [
+    "5% OFF",
+    "10% OFF",
+    "20% OFF",
+    "30% OFF"
+  ];
+
+  const randomPrize =
+    prizes[Math.floor(Math.random() * prizes.length)];
+
+  const roulette =
+    document.getElementById("roulette");
+
+  roulette.innerHTML = "🎰";
+
+  setTimeout(() => {
+    roulette.innerHTML = randomPrize;
+  }, 2000);
+
+}
+
+</script>
