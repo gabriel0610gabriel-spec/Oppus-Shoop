@@ -3,170 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oppus Shop</title>
+    <title>ZeuOne Shop</title>
     <style>
-        /* Resets e Fontes */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        /* Estilos Base do Site */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #050507; color: white; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
 
-        body {
-            background-color: #050507; color: #ffffff; min-height: 100vh;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px; display: flex; flex-direction: column; align-items: center;
-        }
-
-        /* Navbar */
-        nav { width: 100%; max-width: 1200px; display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; margin-top: 10px; }
-        .logo-nav { font-size: 1.2rem; font-weight: bold; display: flex; align-items: center; gap: 8px; cursor: pointer; }
-        .logo-icon { width: 24px; height: 24px; background: linear-gradient(135deg, #a855f7, #6b21a8); border-radius: 50%; }
-        .nav-links { display: flex; gap: 30px; list-style: none; }
-        .nav-links li a { color: #a1a1aa; text-decoration: none; font-size: 0.9rem; transition: color 0.3s; cursor: pointer; }
-        .nav-links li a:hover, .nav-links li a.active { color: #a855f7; }
-        .nav-actions { display: flex; gap: 15px; }
-        .btn-nav { background: transparent; color: #fff; border: 1px solid #27272a; padding: 8px 20px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: all 0.3s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
-        .btn-nav.discord { background-color: #5865F2; border-color: #5865F2; }
-        .btn-nav:hover { border-color: #a855f7; background-color: rgba(168, 85, 247, 0.1); }
-        .btn-nav.discord:hover { background-color: #4752C4; }
-
-        /* Banner de Aviso */
-        .promo-banner { background: linear-gradient(90deg, #6b21a8, #9333ea, #a855f7); width: 100%; max-width: 800px; border-radius: 12px; padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; margin-top: 30px; box-shadow: 0 4px 20px rgba(147, 51, 234, 0.2); }
-        .promo-text h3 { font-size: 1rem; margin-bottom: 4px; }
-        .promo-text p { font-size: 0.8rem; color: #e9d5ff; }
-        .btn-connect { background: #fff; color: #6b21a8; border: none; padding: 8px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.9rem; }
-
-        /* Estrutura de Abas */
-        .tab-content { display: none; flex-direction: column; align-items: center; text-align: center; margin-top: 60px; max-width: 800px; padding: 0 20px; animation: fadeIn 0.4s ease-in-out; width: 100%; }
-        .tab-content.active { display: flex; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Estilos da Home */
-        .sales-badge { border: 1px solid #27272a; padding: 6px 15px; border-radius: 20px; font-size: 0.8rem; color: #a1a1aa; margin-bottom: 25px; background-color: rgba(255, 255, 255, 0.02); }
-        .main-title { font-size: 5rem; font-weight: 900; letter-spacing: -2px; margin-bottom: 15px; background: linear-gradient(90deg, #c084fc, #9333ea, #7e22ce); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .subtitle { font-size: 1.2rem; font-weight: normal; color: #e4e4e7; margin-bottom: 20px; }
-        .description { color: #a1a1aa; font-size: 0.95rem; line-height: 1.6; margin-bottom: 40px; max-width: 500px; }
-        .hero-buttons { display: flex; gap: 15px; }
-        .btn-main { padding: 12px 25px; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 10px; }
-        .btn-primary { background: linear-gradient(90deg, #9333ea, #7e22ce); color: white; border: none; box-shadow: 0 0 20px rgba(147, 51, 234, 0.4); }
-        .btn-primary:hover { box-shadow: 0 0 30px rgba(147, 51, 234, 0.6); transform: translateY(-2px); }
-        .btn-secondary { background: transparent; color: #fff; border: 1px solid #3f3f46; }
-        .btn-secondary:hover { border-color: #a855f7; background-color: rgba(168, 85, 247, 0.05); }
-
-        /* Estilos Abas Produtos/FAQ/Features */
-        .section-title { font-size: 2.5rem; margin-bottom: 10px; color: #fff; }
-        .category-title { font-size: 1.5rem; color: #e4e4e7; width: 100%; text-align: left; margin: 40px 0 20px 0; border-bottom: 1px solid #27272a; padding-bottom: 10px; }
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; width: 100%; }
-        .card { background: rgba(255, 255, 255, 0.02); border: 1px solid #27272a; border-radius: 12px; padding: 20px; text-align: left; transition: border-color 0.3s; display: flex; flex-direction: column; }
-        .card:hover { border-color: #a855f7; }
-        .card h3 { color: #c084fc; margin-bottom: 10px; }
-        .card p { font-size: 0.9rem; color: #a1a1aa; flex-grow: 1; }
-        .price-options { display: flex; flex-direction: column; gap: 8px; margin-top: 20px; }
-        .btn-price { background: rgba(0, 0, 0, 0.3); color: #fff; border: 1px solid #3f3f46; padding: 10px; border-radius: 6px; cursor: pointer; transition: all 0.2s; font-size: 0.85rem; font-weight: 500; text-align: center; }
-        .btn-price:hover { border-color: #a855f7; background: rgba(168, 85, 247, 0.15); color: #c084fc; }
-
-        /* ======== ESTILOS DO MODAL DE PAGAMENTO ======== */
+        /* Estilização do Modal (Design Roxo) */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
             z-index: 1000; justify-content: center; align-items: center;
         }
         .modal-box {
-            background: #8b1ff5; border: 1px solid #27272a; border-radius: 16px;
-            padding: 30px; width: 90%; max-width: 400px; text-align: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); position: relative;
+            background: #8b1ff5; /* Cor roxa definida conforme o print */
+            padding: 30px; border-radius: 20px; text-align: center;
+            width: 90%; max-width: 400px; color: white; position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .close-modal {
-            position: absolute; top: 15px; right: 15px; background: transparent; border: none;
-            color: #fff; font-size: 1.5rem; cursor: pointer; transition: 0.3s; font-weight: bold;
+            position: absolute; top: 15px; right: 15px; cursor: pointer; 
+            font-size: 24px; font-weight: bold; color: white;
         }
-        .close-modal:hover { color: #ccc; }
-        .modal-box h2 { color: #fff; margin-bottom: 5px; font-size: 1.5rem; }
-        .modal-box .preco-destaque { font-size: 2rem; font-weight: bold; margin-bottom: 20px; color: #fff; }
-        
         .qr-code-container {
-            background: #fff; padding: 15px; border-radius: 12px; display: inline-block; margin-bottom: 20px;
+            background: white; padding: 15px; border-radius: 12px; 
+            margin: 20px auto; display: inline-block;
         }
-        .qr-code-img { width: 220px; height: 220px; object-fit: contain; }
+        .qr-code-img { width: 180px; height: 180px; object-fit: contain; }
         
-        .modal-instrucoes { color: #fff; font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5; font-weight: 500; }
+        /* Botão de Compra */
+        .btn-compra {
+            background: #2563eb; color: white; border: none; padding: 12px 25px;
+            border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 20px;
+        }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo-nav" onclick="switchTab('home')">
-            <div class="logo-icon"></div>
-            Oppus Shop
-        </div>
-        <ul class="nav-links">
-            <li><a class="nav-item active" onclick="switchTab('home')">Início</a></li>
-            <li><a class="nav-item" onclick="switchTab('products')">Produtos</a></li>
-            <li><a class="nav-item" onclick="switchTab('faq')">FAQ</a></li>
-            <li><a class="nav-item" onclick="switchTab('features')">Recursos</a></li>
-        </ul>
-        <div class="nav-actions">
-            <a href="https://discord.gg/PAWq8m5hv" target="_blank" class="btn-nav discord">Discord</a>
-            <button class="btn-nav">Login</button>
-        </div>
-    </nav>
-
-    <div class="promo-banner">
-        <div class="promo-text">
-            <h3>🎁 Roleta Diária - Conecte para Girar!</h3>
-            <p>Conecte seu Discord para ganhar recompensas.</p>
-        </div>
-        <button class="btn-connect">Conectar</button>
+    <div style="padding: 50px; text-align: center;">
+        <h1>ZeuOne</h1>
+        <p>Tools for Valorant and Unbans solutions ✨</p>
+        <button class="btn-compra" onclick="abrirModal('R6 - 1 Dia', '30,00')">Comprar R6 - 1 Dia</button>
     </div>
-
-    <main id="home" class="tab-content active">
-        <div class="sales-badge">📈 + 1.534 produtos vendidos</div>
-        <h1 class="main-title">Oppus Shop</h1>
-        <h2 class="subtitle">Soluções e Ferramentas para Jogos ✨</h2>
-        <p class="description">Bem-vindo à loja Oppus Shop. Se você procura softwares de qualidade, deixe-se guiar.</p>
-        <div class="hero-buttons">
-            <button class="btn-main btn-primary" onclick="switchTab('products')">📦 Explorar Software</button>
-        </div>
-    </main>
-
-    <section id="products" class="tab-content">
-        <h2 class="section-title">Nosso Catálogo</h2>
-        <h3 class="category-title">🎮 Jogos</h3>
-        <div class="grid-container">
-            <div class="card">
-                <h3>Rainbow Six Siege</h3>
-                <p>Acesso completo às ferramentas.</p>
-                <div class="price-options">
-                    <button class="btn-price" onclick="abrirModal('R6 - 1 Dia', '30,00')">🛒 1 Dia - R$ 30,00</button>
-                    <button class="btn-price" onclick="abrirModal('R6 - 7 Dias', '140,00')">🛒 7 Dias - R$ 140,00</button>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <div id="modalPagamento" class="modal-overlay">
         <div class="modal-box">
-            <button class="close-modal" onclick="fecharModal()">&times;</button>
+            <span class="close-modal" onclick="fecharModal()">✕</span>
+            
             <h2 id="modalProdutoNome">Nome do Produto</h2>
-            <div class="preco-destaque" id="modalProdutoValor">R$ 0,00</div>
-
-            <p class="modal-instrucoes">
+            <div id="modalProdutoValor" style="font-size: 2rem; font-weight: bold; margin: 10px 0;">R$ 0,00</div>
+            
+            <p style="margin-bottom: 15px; line-height: 1.4;">
                 Abra o app do seu banco, escolha "Pix QR Code" e escaneie a imagem abaixo para pagar.
             </p>
-
+            
             <div class="qr-code-container">
-                <img src="image_9ee727.jpg" alt="QR Code PIX" class="qr-code-img">
+                <img src="image_9ee727.jpg" alt="QR Code Pix" class="qr-code-img">
             </div>
-
-            <p style="font-size: 0.85rem; color: #e4e4e7; font-weight: bold;">
-                Após pagar, envie o comprovante no Discord.
-            </p>
+            
+            <p style="font-weight: bold; font-size: 0.9rem;">Após pagar, envie o comprovante no Discord.</p>
         </div>
     </div>
 
     <script>
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-        }
-
         function abrirModal(nome, valor) {
             document.getElementById('modalProdutoNome').textContent = nome;
             document.getElementById('modalProdutoValor').textContent = "R$ " + valor;
